@@ -1,6 +1,6 @@
 .POSIX:
 
-NAME = scrnsaverdisable-sdl
+NAME = xssd
 
 PREFIX = /usr/local
 BINDIR = $(PREFIX)/bin

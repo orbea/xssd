@@ -31,7 +31,7 @@ int main(void) {
 		return 1;
 	}
 
-	window = SDL_CreateWindow("scrnsaverdisable-sdl",
+	window = SDL_CreateWindow("xssd",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		SCREEN_WIDTH, SCREEN_HEIGHT,
 		SDL_WINDOW_HIDDEN
