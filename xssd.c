@@ -14,7 +14,11 @@
 
 #include <stdio.h>
 
+#ifdef HAVE_SDL3
+#include <SDL3/SDL.h>
+#else
 #include <SDL.h>
+#endif
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
@@ -25,19 +29,29 @@ int main(void) {
 	SDL_Renderer* renderer;
 	SDL_Window* window;
 
+#ifdef HAVE_SDL3
+	if(!SDL_Init(SDL_INIT_VIDEO)) {
+#else
 	if(SDL_Init(SDL_INIT_VIDEO) < 0) {
+#endif
 		fprintf(stderr, "Failed to initialize SDL: %s\n",
 			SDL_GetError());
 		return 1;
 	}
 
 	window = SDL_CreateWindow("xssd",
+#ifndef HAVE_SDL3
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+#endif
 		SCREEN_WIDTH, SCREEN_HEIGHT,
 		SDL_WINDOW_HIDDEN
 	);
 
+#ifdef HAVE_SDL3
+	renderer = SDL_CreateRenderer(window, NULL);
+#else
 	renderer = SDL_CreateRenderer(window, -1, 0);
+#endif
 
 	SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x0, 0xff);
 	SDL_RenderClear(renderer);
@@ -48,7 +62,11 @@ int main(void) {
 	while (running) {
 		while (SDL_PollEvent(&event)) {
 			switch (event.type) {
+#ifdef HAVE_SDL3
+				case SDL_EVENT_QUIT: {
+#else
 				case SDL_QUIT: {
+#endif
 					running = 0;
 					break;
 				}
