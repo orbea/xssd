@@ -1,0 +1,21 @@
+xssd
+----
+xssd is a simple SDL2 or SDL3 program for suppressing the screensaver
+while it is running.
+
+Compiling
+---------
+Make sure you have SDL2 or SDL3 and a POSIX make implementation
+installed.
+
+SDL2:
+  make
+
+SDL3:
+  make TARGET=sdl3
+
+Copyright
+---------
+xssd (0BSD)
+  Copyright (c) 2024-2025 orbea
+  See LICENSE
