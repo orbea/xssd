@@ -7,6 +7,7 @@ BINDIR = $(PREFIX)/bin
 
 CC = cc
 PKG_CONFIG = pkg-config
+STRIP = strip
 
 CFLAGS = -O2
 FLAGS = -std=c89 -Wall -Wextra -ansi -pedantic
@@ -33,7 +34,7 @@ install: all
 	cp $(NAME) $(DESTDIR)$(BINDIR)
 
 install-strip: install
-	strip $(DESTDIR)$(BINDIR)/$(NAME)
+	$(STRIP) $(DESTDIR)$(BINDIR)/$(NAME)
 
 uninstall:
 	rm -f $(DESTDIR)$(BINDIR)/$(NAME)
